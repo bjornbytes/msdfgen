@@ -2,6 +2,7 @@
 #include "../msdfgen.h"
 #include "Shape.h"
 #include "Bitmap.h"
+#include <math.h>
 
 using namespace msdfgen;
 
@@ -65,9 +66,12 @@ void msGenerateMSDF(uint8_t* data, int w, int h, msShape* cShape, float range, f
   int i = 0;
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
-      data[i++] = clamp(int(bitmap(x, y).r * 0x100), 0xff);
-      data[i++] = clamp(int(bitmap(x, y).g * 0x100), 0xff);
-      data[i++] = clamp(int(bitmap(x, y).b * 0x100), 0xff);
+      float r = bitmap(x, y).r;
+      float g = bitmap(x, y).g;
+      float b = bitmap(x, y).b;
+      data[i++] = isfinite(r) ? clamp(int(r * 0x100), 0xff) : 0xff;
+      data[i++] = isfinite(g) ? clamp(int(g * 0x100), 0xff) : 0xff;
+      data[i++] = isfinite(b) ? clamp(int(b * 0x100), 0xff) : 0xff;
     }
   }
 }
