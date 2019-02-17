@@ -13,7 +13,7 @@ typedef struct msEdge msEdge;
 typedef struct msContour msContour;
 typedef struct msShape msShape;
 
-msShape* msShapeCreate();
+msShape* msShapeCreate(void);
 void msShapeDestroy(msShape* shape);
 msContour* msShapeAddContour(msShape* shape);
 void msShapeNormalize(msShape* cShape);

@@ -9,7 +9,7 @@ using namespace msdfgen;
 extern "C" {
 #endif
 
-msShape* msShapeCreate() {
+msShape* msShapeCreate(void) {
   Shape* shape = new Shape;
   return reinterpret_cast<msShape*>(shape);
 }
